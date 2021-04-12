@@ -1,0 +1,37 @@
+package com.cg.fms.repository;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.cg.fms.dto.Contract;
+import com.cg.fms.repo.ContractRepository;
+import org.junit.jupiter.api.Test;
+
+@SpringBootTest
+public class ContractRepositoryTest {
+	
+	@Autowired
+	private ContractRepository contractrepo;
+	private Contract contract;
+	
+	@BeforeEach
+	void setUp() {
+		
+		contract = new Contract();
+		contract.setContractNumber("101");
+		contract.setQuotation("500000");
+		
+	}
+	
+	@Test
+	public void getById() {
+		
+		Contract contract = new Contract("101","500000");
+		 contractrepo.save(contract);
+		 
+		 System.out.println();
+		 
+	}
+	
+}

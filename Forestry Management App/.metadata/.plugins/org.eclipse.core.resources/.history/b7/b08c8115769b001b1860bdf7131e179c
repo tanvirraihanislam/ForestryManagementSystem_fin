@@ -1,0 +1,50 @@
+package com.cg.fms.repository;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.cg.fms.dto.Contract;
+import com.cg.fms.repo.ContractRepository;
+import org.junit.jupiter.api.Test;
+
+@SpringBootTest
+public class ContractRepositoryTest {
+	
+	@Autowired
+	private ContractRepository contractrepo;
+	private Contract contract;
+	
+	@BeforeEach
+	void setUp() {
+		
+		contract = new Contract(null, null);
+		contract.setContractNumber("101");
+		contract.setQuotation("500000");
+		
+	}
+	
+	@Test
+	public void getById() {
+		
+//		Contract contract = new Contract("122222","500000");
+		
+		Contract contract1 = contractrepo.save(contract);
+		
+//		 System.out.println(contractrepo.save(contract));
+		
+		Optional<Contract> optional = contractrepo.findById(contract1.getContractNumber());
+		
+		assertEquals(contract1.getContractNumber(), optional.get().getContractNumber());
+		
+		
+		 
+//		 System.out.println(contractrepo.save(contract));
+		 
+	}
+	
+}
